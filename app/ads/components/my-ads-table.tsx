@@ -11,7 +11,7 @@ import StatusModal from "@/components/ui/status-modal"
 // Update the import for DeleteConfirmationDialog
 // Replace this line:
 // With this:
-import { DeleteConfirmationDialog } from "../components/delete-confirmation-dialog"
+import { DeleteConfirmationDialog } from "./delete-confirmation-dialog"
 // Add Badge import at the top with other imports
 import { Badge } from "@/components/ui/badge"
 
@@ -292,7 +292,7 @@ export default function MyAdsTable({ ads, onAdDeleted }: MyAdsTableProps) {
                   </td>
                   <td className="py-4 w-[18%] truncate">{ad.paymentMethods.join(", ")}</td>
                   <td className="py-4 w-[100px] whitespace-nowrap">{getStatusBadge(ad.status)}</td>
-                  <td className="py-4 w-[15px] text-right">
+                  <td className="py-4 w-[40px] text-right">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <button className="p-1 hover:bg-gray-100 rounded-full">

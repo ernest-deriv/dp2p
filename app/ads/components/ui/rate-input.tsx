@@ -9,7 +9,7 @@ interface RateInputProps {
   onChange: (value: string) => void
   onBlur?: () => void
   step?: number
-  min?: number | string | { min: number; max: number; currency: string }
+  min?: number
   error?: boolean
 }
 
@@ -17,16 +17,6 @@ export function RateInput({ value, onChange, onBlur, step, min, error = false }:
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9.]/g, "")
     onChange(value)
-  }
-
-  // Extract the min value from the complex type
-  const getMinValue = () => {
-    if (typeof min === "number") {
-      return min
-    } else if (typeof min === "object" && min !== null && "min" in min) {
-      return min.min
-    }
-    return undefined
   }
 
   return (
@@ -45,7 +35,7 @@ export function RateInput({ value, onChange, onBlur, step, min, error = false }:
             onChange={handleChange}
             onBlur={onBlur}
             step={step}
-            min={getMinValue()}
+            min={min}
             placeholder="0.00"
             className="w-full p-4 border-0 focus:ring-0 focus:outline-none text-gray-900 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             aria-invalid={error}

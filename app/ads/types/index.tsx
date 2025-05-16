@@ -20,7 +20,7 @@ export interface MyAd {
   }
   paymentMethods: string[]
   status: "Active" | "Inactive"
-  description: string
+  description?: string
   createdAt: string
   updatedAt: string
 }

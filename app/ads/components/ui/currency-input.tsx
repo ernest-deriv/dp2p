@@ -11,7 +11,6 @@ interface CurrencyInputProps extends React.InputHTMLAttributes<HTMLInputElement>
   label?: string
   isEditMode?: boolean
   error?: boolean
-  min?: number | string | { min: number; max: number; currency: string }
 }
 
 export function CurrencyInput({
@@ -24,7 +23,6 @@ export function CurrencyInput({
   isEditMode = false,
   disabled,
   error = false,
-  min,
   ...props
 }: CurrencyInputProps) {
   // Combine the isEditMode prop with any existing disabled prop
@@ -36,16 +34,6 @@ export function CurrencyInput({
       if (onChange) onChange(e)
       if (onValueChange) onValueChange(e.target.value)
     }
-  }
-
-  // Extract the min value from the complex type
-  const getMinValue = () => {
-    if (typeof min === "number") {
-      return min
-    } else if (typeof min === "object" && min !== null && "min" in min) {
-      return min.min
-    }
-    return undefined
   }
 
   return (
@@ -71,7 +59,6 @@ export function CurrencyInput({
             readOnly={isEditMode}
             aria-readonly={isEditMode}
             aria-invalid={error}
-            min={getMinValue()}
             {...props}
           />
           {error && (
